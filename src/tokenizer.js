@@ -26,9 +26,11 @@ const tokenize = (qlString) => {
  * @param {string} char 
  */
 function isBreakPoint(char) {
-  return ((((char === OPENING_CURLY || char === CLOSING_CURLY) || char === SPACE) || char === '\n') || char === EMPTY_STRING)
+  if(typeof char !== 'string' || char.length > 1) return false
+  const match = char.match(/|[{} \n^$]/)
+  return match ? true : false
 }
 
 module.exports = {
-  tokenize
+  tokenize, isBreakPoint
 }
